@@ -1,9 +1,10 @@
 import subprocess
-
+import os
 class Interactor():
 
     # Start the process and store the Popen object
     def __init__(self):
+        os.chdir("/home/kepper104/steamcmd/unturned/")
         self.popen = subprocess.Popen(["./ServerHelper.sh"], stdout=subprocess.PIPE,
                                  stdin=subprocess.PIPE, universal_newlines=True)
 
@@ -28,4 +29,4 @@ class Interactor():
 
 # Close the stdout stream and wait for the process to finish
 
-i = Interactor()
+# i = Interactor()
