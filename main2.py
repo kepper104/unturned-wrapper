@@ -4,6 +4,9 @@ class Interactor():
 
     # Start the process and store the Popen object
     def __init__(self):
+        print('inited')
+    async def start(self):
+        print("START " * 100)
         # os.chdir("/home/kepper104/steamcmd/unturned/")
         os.chdir("/home/kepper104/hosting/unturned")
         self.popen = subprocess.Popen(["./ServerHelper.sh"], stdout=subprocess.PIPE,
@@ -30,7 +33,7 @@ class Interactor():
 
 # Close the stdout stream and wait for the process to finish
 #
-i = Interactor()
+# i = Interactor()
 
 import time
 
