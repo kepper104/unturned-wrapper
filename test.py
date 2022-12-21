@@ -1,4 +1,5 @@
-print("Hello world!")
-print("Kek")
+print("your name:")
 a = input()
-print("this.", a)
+print("Hello,", a)
+age = int(input())
+print("Age is", age)

@@ -1,13 +1,7 @@
-#!/usr/bin/env python
-import os
-import pty
-import sys
+import pexpect
+program = pexpect.spawn("python3 test.py")
+program.expect('Name')
 
-with open('log', 'ab') as file:
-    def read(fd):
-        data = os.read(fd, 1024)
-        file.write(data)
-        file.flush()
-        return data
+print(program.before.decode())
+program.interact()
 
-    pty.spawn([sys.executable, "test.py"], read)
