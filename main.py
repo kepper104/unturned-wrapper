@@ -20,6 +20,7 @@ import asyncio
 async def start():
     i = main2.Interactor()
     await i.start()
+    await i.send_input("hi mark")
     print("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
 

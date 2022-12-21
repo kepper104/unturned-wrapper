@@ -22,8 +22,9 @@ class Interactor():
             raise SystemError
 
 
-    def send_input(self, input_str):
+    async def send_input(self, input_str):
         # Send input to the process
+        print(input_str * 100)
         self.popen.stdin.write(input_str)
         self.popen.stdin.flush()
 
