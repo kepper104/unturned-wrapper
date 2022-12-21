@@ -29,4 +29,4 @@ class Interactor():
 
 # Close the stdout stream and wait for the process to finish
 
-# i = Interactor()
+i = Interactor()
