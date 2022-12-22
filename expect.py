@@ -16,6 +16,7 @@ class Interactor:
         print("Started Controller")
         chdir("/home/kepper104/hosting/unturned/")
         self.child = pexpect.spawn("./ServerHelper.sh")
+        self.child.timeout = 99999999
         self.started = False
         self.command = None
         print("Beginning reading...")

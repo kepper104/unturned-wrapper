@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unturned Server Control</title>
+</head>
+<body>
+  <h1>Unturned Server Control</h1>
+  <button id="start-button">Start</button>
+  <button id="stop-button">Stop</button>
+  <button id="restart-button">Restart</button>
+  <br>
+  <textarea id="console" rows="10" cols="50" readonly> {{ logs }} </textarea>
+  <br>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Set up timer to refresh page
+      setInterval(function() {
+        location.reload();
+      }, 1000);
+
+      // Set up button event handlers
+      $('#start-button').click(function() {
+        window.location.href = '/start';
+      });
+      $('#stop-button').click(function() {
+        window.location.href = '/stop';
+      });
+      $('#restart-button').click(function() {
+        window.location.href = '/restart';
+      });
+    });
+  </script>
+</body>
+</html>
