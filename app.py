@@ -17,7 +17,7 @@ class ServerControl:
 
         @self.app.route("/")
         def index():
-            self.server_logs += "hell o\n"
+            # self.server_logs += "hell o\n"
             return render_template(self.index_path, logs=self.server_logs)
 
         @self.app.route("/start")

@@ -25,7 +25,7 @@ class Interactor:
 
     def read(self):
         for line in self.child:
-            self.controller.server_logs += line.decode() + '\n'
+            self.controller.server_logs += line.decode()
             print(line.decode())
             if "Loading level: 100%" in line.decode():
                 self.started = True
