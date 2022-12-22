@@ -3,7 +3,8 @@ from os import chdir
 
 chdir('/home/kepper104/hosting/unturned/')
 c = pexpect.spawn('./ServerHelper.sh')
-c.expect("ms)")
-c.sendline("players")
+c.expect("unused Assets to reduce memory usage")
 
-print(c.before)
+c.sendline("players")
+c.expect("any players.")
+print(c.read())
