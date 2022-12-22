@@ -9,48 +9,32 @@
   <button id="stop-button">Stop</button>
   <button id="restart-button">Restart</button>
   <br>
-  <textarea id="console" rows="50" cols="200" readonly> {{ logs }} </textarea>
+  <textarea id="console" rows="10" cols="50" readonly>{{ logs }}</textarea>
   <br>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script>
-    
-  $(document).ready(function() {
-    // Set up button event handlers
-    $('#start-button').click(function() {
-      $.ajax({
-        url: '/start',
-        type: 'get',
-        dataType: 'json',
-        success: function(response) {
-          $('#console').val(response.logs);
-          $('#console').scrollTop($('#console')[0].scrollHeight);
-        }
-      });
-    });
-    $('#stop-button').click(function() {
-      $.ajax({
-        url: '/stop',
-        type: 'get',
-        dataType: 'json',
-        success: function(response) {
-          $('#console').val(response.logs);
-          $('#console').scrollTop($('#console')[0].scrollHeight);
-        }
-      });
-    });
-    $('#restart-button').click(function() {
-      $.ajax({
-        url: '/restart',
-        type: 'get',
-        dataType: 'json',
-        success: function(response) {
-          $('#console').val(response.logs);
-          $('#console').scrollTop($('#console')[0].scrollHeight);
-        }
-      });
-    });
-  });
-</script>
+    $(document).ready(function() {
+      // Set up websocket connection
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
 
+      // Set up button event handlers
+      $('#start-button').click(function() {
+        socket.emit('start');
+      });
+      $('#stop-button').click(function() {
+        socket.emit('stop');
+      });
+      $('#restart-button').click(function() {
+        socket.emit('restart');
+      });
+
+      // Listen for updates
+      socket.on('update', function(data) {
+        $('#console').val(data.logs);
+        $('#console').scrollTop($('#console')[0].scrollHeight);
+      });
+    });
+  </script>
 </body>
 </html>
