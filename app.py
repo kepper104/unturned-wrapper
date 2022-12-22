@@ -7,8 +7,9 @@ app = Flask(__name__)
 def def_app():
     # url = "http://movie-quotes-2.herokuapp.com/api/v1/quotes/random"
     # response = requests.get(url).json()
-
-    return "Hello there"
+    with open("index.html", 'r') as f:
+        index = f.read()
+    return index
 
 
 if __name__ == '__main__':

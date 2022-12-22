@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unturned Server Control</title>
+</head>
+<body>
+  <h1>Unturned Server Control</h1>
+  <p>Use the buttons below to control your Unturned server:</p>
+  <button onclick="startServer()">Start Server</button>
+  <button onclick="stopServer()">Stop Server</button>
+  <button onclick="restartServer()">Restart Server</button>
+  <br><br>
+  <p>Server status: <span id="status">Unknown</span></p>
+  <br>
+  <p>Server logs:</p>
+  <textarea id="logs" rows="20" cols="80" readonly></textarea>
+  <script>
+    function startServer() {
+      // Insert code here to start the server
+      document.getElementById("status").innerHTML = "Running";
+      document.getElementById("logs").value = "Starting server...\n";
+    }
+    function stopServer() {
+      // Insert code here to stop the server
+      document.getElementById("status").innerHTML = "Stopped";
+      document.getElementById("logs").value += "Stopping server...\n";
+    }
+    function restartServer() {
+      // Insert code here to restart the server
+      document.getElementById("status").innerHTML = "Restarting...";
+      document.getElementById("logs").value += "Restarting server...\n";
+    }
+  </script>
+</body>
+</html>
