@@ -16,19 +16,31 @@
   <textarea id="logs" rows="20" cols="80" readonly></textarea>
   <script>
     function startServer() {
-      // Insert code here to start the server
-      document.getElementById("status").innerHTML = "Running";
-      document.getElementById("logs").value = "Starting server...\n";
+      // Send an HTTP request to the Flask app to start the server
+      fetch('/start')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("status").innerHTML = "Running";
+          document.getElementById("logs").value = data.logs;
+        });
     }
     function stopServer() {
-      // Insert code here to stop the server
-      document.getElementById("status").innerHTML = "Stopped";
-      document.getElementById("logs").value += "Stopping server...\n";
+      // Send an HTTP request to the Flask app to stop the server
+      fetch('/stop')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("status").innerHTML = "Stopped";
+          document.getElementById("logs").value = data.logs;
+        });
     }
     function restartServer() {
-      // Insert code here to restart the server
-      document.getElementById("status").innerHTML = "Restarting...";
-      document.getElementById("logs").value += "Restarting server...\n";
+      // Send an HTTP request to the Flask app to restart the server
+      fetch('/restart')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("status").innerHTML = "Restarting...";
+          document.getElementById("logs").value = data.logs;
+        });
     }
   </script>
 </body>
