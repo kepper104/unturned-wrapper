@@ -13,23 +13,44 @@
   <br>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function() {
-      // Set up timer to refresh page
-      setInterval(function() {
-        location.reload();
-      }, 1000);
-
-      // Set up button event handlers
-      $('#start-button').click(function() {
-        window.location.href = '/start';
-      });
-      $('#stop-button').click(function() {
-        window.location.href = '/stop';
-      });
-      $('#restart-button').click(function() {
-        window.location.href = '/restart';
+    
+  $(document).ready(function() {
+    // Set up button event handlers
+    $('#start-button').click(function() {
+      $.ajax({
+        url: '/start',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          $('#console').val(response.logs);
+          $('#console').scrollTop($('#console')[0].scrollHeight);
+        }
       });
     });
-  </script>
+    $('#stop-button').click(function() {
+      $.ajax({
+        url: '/stop',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          $('#console').val(response.logs);
+          $('#console').scrollTop($('#console')[0].scrollHeight);
+        }
+      });
+    });
+    $('#restart-button').click(function() {
+      $.ajax({
+        url: '/restart',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          $('#console').val(response.logs);
+          $('#console').scrollTop($('#console')[0].scrollHeight);
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
