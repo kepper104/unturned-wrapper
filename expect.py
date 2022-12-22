@@ -1,10 +1,23 @@
 import pexpect
 from os import chdir
 
-chdir('/home/kepper104/hosting/unturned/')
-c = pexpect.spawn('./ServerHelper.sh')
-c.expect("unused Assets to reduce memory usage")
+class Interactor():
+    def __init__(self):
 
-c.sendline("players")
-c.expect("any players.")
-print(c.read())
+        chdir("/home/kepper104/hosting/unturned/")
+        self.child = pexpect.spawn("./ServerHelper.sh")
+        self.started = False
+        self.read()
+
+    def read(self):
+        for line in self.child:
+            print(line.decode())
+            if "Loading level: 100%" in line.decode():
+                self.started = True
+            if "CreateObjectMapping:" in line.decode() and self.started:
+                print("FOUND " * 10)
+                self.child.sendline("players")
+                print("SENT PLAYERS")
+
+#print(c.read())
+interactor = Interactor()
