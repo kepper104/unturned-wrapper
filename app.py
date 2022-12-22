@@ -10,7 +10,7 @@ class ServerControl:
 
         @self.app.route("/")
         def index():
-            with open("index.html", 'r') as f:
+            with open("/home/kepper104/hosting/unturned-wrapper/index.html", 'r') as f:
                 index = f.read()
             return index
 
