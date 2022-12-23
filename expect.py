@@ -1,6 +1,5 @@
 import pexpect
 from os import chdir
-from app import ServerControl
 from threading import Thread
 
 # commands = {"players": ["any players."],
@@ -11,6 +10,8 @@ class Interactor:
     def __init__(self, flask_app):
 
         self.flask_app = flask_app
+
+    def start(self):
         print("Started Controller")
         chdir("/home/kepper104/hosting/unturned/")
         self.child = pexpect.spawn("./ServerHelper.sh")
@@ -19,7 +20,6 @@ class Interactor:
         self.command = None
         print("Beginning reading...")
         self.read()
-
 
     def read(self):
         for line in self.child:

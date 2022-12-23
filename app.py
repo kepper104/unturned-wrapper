@@ -46,6 +46,6 @@ class ServerControl:
 
     def start_server(self):
         self.server = Interactor(self)
-        t = Thread(target=self.controller.run)
+        t = Thread(target=self.server.start())
         t.start()
 
