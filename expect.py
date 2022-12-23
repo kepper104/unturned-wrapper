@@ -8,11 +8,9 @@ from threading import Thread
 
 
 class Interactor:
-    def __init__(self):
-        self.controller = ServerControl()
-        t = Thread(target=self.controller.run)
-        t.start()
+    def __init__(self, flask_app):
 
+        self.flask_app = flask_app
         print("Started Controller")
         chdir("/home/kepper104/hosting/unturned/")
         self.child = pexpect.spawn("./ServerHelper.sh")
@@ -25,7 +23,7 @@ class Interactor:
 
     def read(self):
         for line in self.child:
-            self.controller.server_logs += line.decode()
+            self.flask_app.server_logs += line.decode()
             print(line.decode())
             if "Loading level: 100%" in line.decode():
                 self.started = True

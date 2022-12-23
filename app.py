@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, emit
 from threading import Thread
 from time import sleep
 from os import chdir
+from expect import Interactor
 
 
 class ServerControl:
@@ -43,4 +44,9 @@ class ServerControl:
 
     def run(self):
         self.app.run(debug=False, host='0.0.0.0')
+
+    def start_server(self):
+        self.server = Interactor(self)
+        t = Thread(target=self.controller.run)
+        t.start()
 
