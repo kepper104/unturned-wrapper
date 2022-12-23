@@ -13,28 +13,17 @@
   <br>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-  <script>
-    $(document).ready(function() {
-      // Set up websocket connection
-      var socket = io.connect('http://' + document.domain + ':' + location.port);
-
-      // Set up button event handlers
-      $('#start-button').click(function() {
-        socket.emit('start');
-      });
-      $('#stop-button').click(function() {
-        socket.emit('stop');
-      });
-      $('#restart-button').click(function() {
-        socket.emit('restart');
-      });
-
-      // Listen for updates
-      socket.on('update', function(data) {
-        $('#console').val(data.logs);
-        $('#console').scrollTop($('#console')[0].scrollHeight);
-      });
-    });
-  </script>
+  <script type=text/javascript>
+        $(function() {
+          $('start-button').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/start_server',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
 </body>
 </html>
