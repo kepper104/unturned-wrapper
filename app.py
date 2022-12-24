@@ -54,15 +54,14 @@ class ServerControl:
             return "nothing"
 
 
+        @self.app.context_processor
+        def inject_load():
+            return {'logs': self.server_logs}
 
         @self.app.before_first_request
         def before_first_request():
             print("START THREAD\n" * 100)
             Thread(target=self.update_load).start()
-
-        @self.app.context_processor
-        def inject_load():
-            return {'logs': self.server_logs}
 
         self.app.run(debug=False, host='0.0.0.0')
 
