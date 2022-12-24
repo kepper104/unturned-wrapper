@@ -27,8 +27,9 @@
             return false;
           });
         });
-      var console = $('#load');
-      console.scrollTop(console[0].scrollHeight - console.height());
+
+      var console = document.getElementById("load")
+      console.scrollTop = console.scrollHeight;
 </script>
 </body>
 </html>
