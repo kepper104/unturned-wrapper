@@ -7,8 +7,7 @@ from turbo_flask import Turbo
 
 class ServerControl:
     def __init__(self):
-        self.app = Flask(__name__)
-        self.app.config['SECRET_KEY'] = 'secret!'
+
         self.server_logs = ""
         # self.index_path = "/home/kepper104/hosting/unturned-wrapper/index.html"
         chdir("/home/kepper104/hosting/unturned-wrapper/")
@@ -42,7 +41,11 @@ class ServerControl:
         #     emit('update', {'logs': self.server_logs}, broadcast=True)
 
     def run(self):
+        self.app = Flask(__name__)
+        self.app.config['SECRET_KEY'] = 'secret!'
+        self.start_server()
         self.app.run(debug=False, host='0.0.0.0')
+
 
     def start_server(self):
         self.server = Interactor(self)
