@@ -70,5 +70,5 @@ class ServerControl:
             while True:
                 sleep(0.3)
                 print("updating.....")
-                self.turbo.push(self.turbo.replace(render_template('index.html'), 'load'))
+                self.turbo.push(self.turbo.replace(render_template('logs.html'), 'load'))
 
