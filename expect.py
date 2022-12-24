@@ -23,10 +23,12 @@ class Interactor:
 
     def read(self):
         for line in self.child:
-
+            real_line = str(line.decode())
+            # if not real_line[0].isprintable()
             self.flask_app.server_logs += line.decode()
-
-            print(str(line.decode())[:-2], self.command)
+            print(line)
+            print('\n')
+            # print(str(line.decode())[:-2], self.command)
             if "Loading level: 100%" in line.decode():
                 self.started = True
             # if self.command:
