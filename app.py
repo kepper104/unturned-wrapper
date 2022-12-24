@@ -53,6 +53,3 @@ class ServerControl:
         self.app.run(debug=False, host='0.0.0.0')
 
 
-    def start_server(self):
-
-
