@@ -29,13 +29,16 @@ class Interactor:
             print(str(line.decode())[:-2], self.command)
             if "Loading level: 100%" in line.decode():
                 self.started = True
-            if self.command:
-                print("SENT PLAYERS")
-                self.child.sendline("players")
-                self.command = None
+            # if self.command:
+            #     print("SENT PLAYERS")
+            #     self.child.sendline("players")
+            #     self.command = None
             # if "CreateObjectMapping:" in line.decode() and self.started:
             #     print("FOUND " * 10)
             #     self.child.sendline("players")
             #     print("SENT PLAYERS")
-    # def kill(self):
-    #     self.command = "players"
+    def kill(self):
+        self.command = "players"
+        print("PLAYERS " * 100)
+        self.child.sendline('players')
+        self.command = None

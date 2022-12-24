@@ -45,7 +45,8 @@ class ServerControl:
         def stop_server():
             print("Server Stop")
             self.server_logs += "Stopping server...\n"
-            self.server.command = "players"
+            self.server.kill()
+            # self.server.command = "players"
             return "nothing"
 
         @self.app.context_processor
