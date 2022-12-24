@@ -16,17 +16,7 @@ class ServerControl:
         # with open("index.html", 'r') as f:
         #     self.index_path = f.read()
 
-        @self.app.route("/")
-        def index():
-            # self.server_logs += "hell o\n"
-            return render_template(self.index_path, logs=self.server_logs)
 
-        @self.app.route("/start_server")
-        def start_server():
-            print("HI")
-            # Insert code here to start the server
-            self.server_logs += "Starting server...\n"
-            # emit('update', {'logs': self.server_logs}, broadcast=True)
 
         # @socketio.on('stop')
         # def stop_server():
@@ -44,6 +34,18 @@ class ServerControl:
         self.app = Flask(__name__)
         self.app.config['SECRET_KEY'] = 'secret!'
         self.start_server()
+
+        @self.app.route("/")
+        def index():
+            # self.server_logs += "hell o\n"
+            return render_template(self.index_path, logs=self.server_logs)
+
+        @self.app.route("/start_server")
+        def start_server():
+            print("HI")
+            # Insert code here to start the server
+            self.server_logs += "Starting server...\n"
+            # emit('update', {'logs': self.server_logs}, broadcast=True)
         self.app.run(debug=False, host='0.0.0.0')
 
 
