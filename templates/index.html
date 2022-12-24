@@ -14,6 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script type=text/javascript>
+
         $(function() {
           $('#start-button').on('click', function(e) {
             e.preventDefault()
@@ -24,6 +25,8 @@
             return false;
           });
         });
+      var console = $('#console');
+      console.scrollTop(console[0].scrollHeight - console.height());
 </script>
 </body>
 </html>
