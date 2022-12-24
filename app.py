@@ -32,6 +32,7 @@ class ServerControl:
 
     def run(self):
         self.app = Flask(__name__)
+        self.turbo = Turbo(self.app)
         # self.app.config['SECRET_KEY'] = 'secret!'
         self.server = Interactor(self)
         t = Thread(target=self.server.start, args=())
@@ -42,7 +43,7 @@ class ServerControl:
         @self.app.route("/")
         def index():
             # self.server_logs += "hell o\n"
-            return render_template(self.index_path, logs=self.server_logs)
+            return render_template(self.index_path)
 
         @self.app.route("/start_server")
         def start_server():
@@ -52,6 +53,21 @@ class ServerControl:
             # emit('update', {'logs': self.server_logs}, broadcast=True)
             return "nothing"
 
+
+
+        @self.app.before_first_request
+        def before_first_request():
+            Thread(target=self.update_load).start()
+
+        @self.app.context_processor
+        def inject_load():
+            return {'logs': self.server_logs}
+
         self.app.run(debug=False, host='0.0.0.0')
 
+    def update_load(self):
+        with self.app.app_context():
+            while True:
+                sleep(0.3)
+                self.turbo.push(self.turbo.replace(render_template('index.html'), 'load'))
 
