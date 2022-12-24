@@ -44,7 +44,8 @@ class ServerControl:
 
         @self.app.context_processor
         def inject_load():
-            return {'logs': self.server_logs[-50:]}
+            logs = self.server_logs.split("\n")
+            return {'logs': "\n".join(logs[-50:])}
 
         @self.app.before_first_request
         def before_first_request():
