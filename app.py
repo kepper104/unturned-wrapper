@@ -37,7 +37,7 @@ class ServerControl:
         self.server = Interactor(self)
         t = Thread(target=self.server.start, args=())
         t.start()
-        print("STARTED " * 1000)
+        # print("STARTED " * 1000)
         # self.start_server()
 
         @self.app.route("/")
@@ -57,6 +57,7 @@ class ServerControl:
 
         @self.app.before_first_request
         def before_first_request():
+            print("START THREAD\n" * 100)
             Thread(target=self.update_load).start()
 
         @self.app.context_processor

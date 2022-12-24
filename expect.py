@@ -11,7 +11,7 @@ class Interactor:
         self.flask_app = flask_app
 
     def start(self):
-        print("Started Controller" * 100)
+        # print("Started Controller" * 100)
         chdir("/home/kepper104/hosting/unturned/")
         self.child = pexpect.spawn("./ServerHelper.sh")
         self.child.timeout = 99999999
