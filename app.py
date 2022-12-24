@@ -32,8 +32,11 @@ class ServerControl:
 
     def run(self):
         self.app = Flask(__name__)
-        self.app.config['SECRET_KEY'] = 'secret!'
-        self.start_server()
+        # self.app.config['SECRET_KEY'] = 'secret!'
+        self.server = Interactor(self)
+        t = Thread(target=self.server.start())
+        t.start()
+        # self.start_server()
 
         @self.app.route("/")
         def index():
@@ -46,11 +49,10 @@ class ServerControl:
             # Insert code here to start the server
             self.server_logs += "Starting server...\n"
             # emit('update', {'logs': self.server_logs}, broadcast=True)
+
         self.app.run(debug=False, host='0.0.0.0')
 
 
     def start_server(self):
-        self.server = Interactor(self)
-        t = Thread(target=self.server.start())
-        t.start()
+
 
