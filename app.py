@@ -69,5 +69,6 @@ class ServerControl:
         with self.app.app_context():
             while True:
                 sleep(0.3)
+                print("updating.....")
                 self.turbo.push(self.turbo.replace(render_template('index.html'), 'load'))
 
