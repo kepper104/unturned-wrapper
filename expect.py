@@ -26,9 +26,10 @@ class Interactor:
             real_line = str(line.decode())
             # if not real_line[0].isprintable()
             self.flask_app.server_logs += line.decode()
-            print(line)
-            print('\n')
-            # print(str(line.decode())[:-2], self.command)
+            # print(line)
+            # print('\n')
+            # a = "\x1b[6n\x1b[31m"
+            print(str(line.decode())[15:-2], self.command)
             if "Loading level: 100%" in line.decode():
                 self.started = True
             # if self.command:
