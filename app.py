@@ -42,7 +42,7 @@ class ServerControl:
             return "nothing"
 
         @self.app.route("/stop_server")
-        def start_server():
+        def stop_server():
             print("Server Stop")
             self.server_logs += "Stopping server...\n"
             self.server.command = "players"
