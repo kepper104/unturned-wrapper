@@ -50,6 +50,7 @@ class ServerControl:
             # Insert code here to start the server
             self.server_logs += "Starting server...\n"
             # emit('update', {'logs': self.server_logs}, broadcast=True)
+            return "nothing"
 
         self.app.run(debug=False, host='0.0.0.0')
 
