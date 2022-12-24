@@ -27,6 +27,16 @@
             return false;
           });
         });
+        $(function() {
+          $('#stop-button').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/stop_server',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
 
       var console = document.getElementById("load")
       console.scrollTop = console.scrollHeight;

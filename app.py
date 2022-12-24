@@ -18,29 +18,35 @@ class ServerControl:
 
 
 
+
     def run(self):
         self.app = Flask(__name__)
         self.turbo = Turbo(self.app)
         # self.app.config['SECRET_KEY'] = 'secret!'
-        self.server = Interactor(self)
-        t = Thread(target=self.server.start, args=())
-        t.start()
+
         # print("STARTED " * 1000)
         # self.start_server()
 
+        self.server = Interactor(self)
+        self.t = Thread(target=self.server.start, args=())
+        self.t.start()
+
         @self.app.route("/")
         def index():
-            # self.server_logs += "hell o\n"
             return render_template(self.index_path)
 
         @self.app.route("/start_server")
         def start_server():
-            print("HI")
-            # Insert code here to start the server
+            print("Server Start")
             self.server_logs += "Starting server...\n"
-            # emit('update', {'logs': self.server_logs}, broadcast=True)
             return "nothing"
 
+        @self.app.route("/stop_server")
+        def start_server():
+            print("Server Stop")
+            self.server_logs += "Stopping server...\n"
+            self.server.command = "players"
+            return "nothing"
 
         @self.app.context_processor
         def inject_load():
@@ -49,7 +55,7 @@ class ServerControl:
 
         @self.app.before_first_request
         def before_first_request():
-            print("START THREAD\n" * 100)
+            # print("START THREAD\n" * 100)
             Thread(target=self.update_load).start()
 
         self.app.run(debug=False, host='0.0.0.0')
@@ -57,7 +63,7 @@ class ServerControl:
     def update_load(self):
         with self.app.app_context():
             while True:
-                sleep(0.3)
-                print("updating.....")
+                sleep(0.2)
+                # print("updating.....")
                 self.turbo.push(self.turbo.replace(render_template('logs.html'), 'load'))
 

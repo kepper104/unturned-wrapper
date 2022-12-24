@@ -17,18 +17,25 @@ class Interactor:
         self.child.timeout = 99999999
         self.started = False
         self.command = None
+        self.running = False
         print("Beginning reading...")
         self.read()
 
     def read(self):
         for line in self.child:
+
             self.flask_app.server_logs += line.decode()
+
             print(str(line.decode())[:-2])
             if "Loading level: 100%" in line.decode():
                 self.started = True
             if self.command:
-                print("command searching...")
+                print("SENT PLAYERS")
+                self.child.sendline("players")
+                self.command = None
             # if "CreateObjectMapping:" in line.decode() and self.started:
             #     print("FOUND " * 10)
             #     self.child.sendline("players")
             #     print("SENT PLAYERS")
+    # def kill(self):
+    #     self.command = "players"
