@@ -36,6 +36,7 @@ class ServerControl:
         self.server = Interactor(self)
         t = Thread(target=self.server.start())
         t.start()
+        print("STARTED " * 1000)
         # self.start_server()
 
         @self.app.route("/")
