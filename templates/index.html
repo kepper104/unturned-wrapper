@@ -9,7 +9,7 @@
   <button id="stop-button">Stop</button>
   <button id="restart-button">Restart</button>
   <br>
-  <textarea id="console" rows="50" cols="200" class="load" readonly> {{ logs }} </textarea>
+  <textarea id="load" rows="50" cols="200" class="load" readonly> {{ logs }} {{ turbo() }} </textarea>
   <br>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
@@ -25,7 +25,7 @@
             return false;
           });
         });
-      var console = $('#console');
+      var console = $('#load');
       console.scrollTop(console[0].scrollHeight - console.height());
 </script>
 </body>
