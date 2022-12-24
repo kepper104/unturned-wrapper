@@ -18,18 +18,6 @@ class ServerControl:
 
 
 
-        # @socketio.on('stop')
-        # def stop_server():
-        #     # Insert code here to stop the server
-        #     self.server_logs += "Stopping server...\n"
-        #     emit('update', {'logs': self.server_logs}, broadcast=True)
-        #
-        # @socketio.on('restart')
-        # def restart_server():
-        #     # Insert code here to restart the server
-        #     self.server_logs += "Restarting server...\n"
-        #     emit('update', {'logs': self.server_logs}, broadcast=True)
-
     def run(self):
         self.app = Flask(__name__)
         self.turbo = Turbo(self.app)
@@ -56,7 +44,7 @@ class ServerControl:
 
         @self.app.context_processor
         def inject_load():
-            return {'logs': self.server_logs}
+            return {'logs': self.server_logs[-50:]}
 
         @self.app.before_first_request
         def before_first_request():
