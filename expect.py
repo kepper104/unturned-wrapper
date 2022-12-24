@@ -26,7 +26,7 @@ class Interactor:
 
             self.flask_app.server_logs += line.decode()
 
-            print(str(line.decode())[:-2])
+            print(str(line.decode())[:-2], self.command)
             if "Loading level: 100%" in line.decode():
                 self.started = True
             if self.command:
