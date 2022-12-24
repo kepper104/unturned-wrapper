@@ -34,7 +34,7 @@ class ServerControl:
         self.app = Flask(__name__)
         # self.app.config['SECRET_KEY'] = 'secret!'
         self.server = Interactor(self)
-        t = Thread(target=self.server.start())
+        t = Thread(target=self.server.start, args=())
         t.start()
         print("STARTED " * 1000)
         # self.start_server()
